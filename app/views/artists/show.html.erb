@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @artist.name %>
+</p>
+
+<p>
+  <strong>Born:</strong>
+  <%= @artist.born %>
+</p>
+
+<p>
+  <strong>Died:</strong>
+  <%= @artist.died %>
+</p>
+
+<% if can? :update, Artist %>
+  <%= link_to 'Edit', edit_artist_path(@artist) %>
+<% end %>
+
+<hr>
+
+<%#= render 'artworks/index' %>
+
+<% @artworks.each do |artwork| %>
+  <%= render 'artworks/show', artwork: artwork %>
+<% end %>
+
+<%= render 'artworks/form', artwork: Artwork.new %>

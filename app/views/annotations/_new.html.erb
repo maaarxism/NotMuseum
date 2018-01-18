@@ -1,0 +1,24 @@
+<%= form_for [@gallery, annotation], remote: true do |f| %>
+  <% if annotation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(annotation.errors.count, "error") %> prohibited this annotation from being saved:</h2>
+
+      <ul>
+      <% annotation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+    <%#= link_to 'Cancel', new_link_annotation_gallery_annotations_path(@gallery), remote: true %>
+    <div class="removeForm link">Cancel</div>
+  </div>
+<% end %>

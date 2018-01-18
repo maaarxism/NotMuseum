@@ -1,0 +1,46 @@
+<%=
+  react_component("GalleryEdit", {
+    background:   @gallery.background,
+    title:        @gallery.title,
+    galleryItems: @gallery_items.to_json
+  })
+%>
+
+<section class="galleryWrapper" style="<%= 'background-color: #' + @gallery.background %>">
+  <header>
+    <h1>
+      <%= @gallery.title %>
+    </h1>
+
+    <% if can? :show, @gallery %>
+      <%= link_to 'Show', gallery_path(@gallery), class: 'editButton' %>
+    <% end %>
+  </header>
+
+  <div id="galleryAnnotation_new">
+    <%= render 'annotations/new', annotation: @annotation %>
+  </div>
+
+  <section class="galleryContainer" data-update-url="<%= sort_items_gallery_url(@gallery) %>" data-create-exhibition-url="<%= gallery_exhibitions_url(@gallery) %>">
+    <div class="galleryZeroAnnotation">
+      <div class="separator">
+        <%= render 'annotations/new_link' %>
+      </div>
+    </div>
+
+    <%#= render partial: 'items', locals: { gallery_items: @gallery_items, gallery_template: 'edit' } %>
+    <%= render 'items', gallery_items: @gallery_items, gallery_template: 'edit' %>
+  </section>
+
+  <%= render 'artworks_container', artworks: @artworks %>
+</section>
+
+
+
+
+<h1>Editing Gallery</h1>
+
+<%= render 'form', gallery: @gallery %>
+
+<%= link_to 'Show', @gallery %> |
+<%= link_to 'Back', galleries_path %>

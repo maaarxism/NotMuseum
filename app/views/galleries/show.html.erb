@@ -1,0 +1,15 @@
+<section class="galleryWrapper" style="<%= 'background-color: #' + @gallery.background %>">
+  <header>
+    <h1>
+      <%= @gallery.title %>
+    </h1>
+
+    <% if can? :manage, @gallery %>
+      <%= link_to 'Edit', edit_gallery_path(@gallery), class: 'editButton' %>
+    <% end %>
+  </header>
+
+  <section class="galleryContainer">
+    <%= render 'items', gallery_items: @gallery_items, gallery_template: 'show' %>
+  </section>
+</section>

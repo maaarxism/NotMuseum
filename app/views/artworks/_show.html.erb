@@ -1,0 +1,35 @@
+<%
+  if defined? exhibition
+    gallery_item_id = exhibition.id
+    id_prefix = 'gallery_item'
+    classname = 'galleryExhibition'
+  else
+    gallery_item_id = artwork.id
+    id_prefix = 'artwork_item'
+    classname = 'galleryArtwork'
+  end
+%>
+
+<div class="galleryItem <%= classname %>" id="<%= [id_prefix, gallery_item_id].join('_') %>">
+  <div class="content">
+    <div class="id"><%= artwork.id %></div>
+    <div class="handle"></div>
+
+    <h2><%= link_to artwork.title, artwork %></h2>
+
+    <p>
+      <strong>Year:</strong>
+      <%= artwork.year %>
+    </p>
+
+    <%= image_tag artwork.image %>
+
+    <% if defined? exhibition %>
+      <%= link_to 'Destroy', [@gallery, exhibition], method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>
+    <% end %>
+  </div>
+
+  <div class="separator">
+    <%= render 'annotations/new_link' %>
+  </div>
+</div>

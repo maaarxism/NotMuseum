@@ -1,0 +1,4 @@
+$('.galleryAnnotation#gallery_item_<%= @annotation.id %>').html("<%= j render 'annotations/annotation', annotation: @annotation, gallery_template: 'edit' %>")
+$('.handle').fadeIn()
+$('.separator').fadeIn()
+addNewAnnotationLinkClick()
